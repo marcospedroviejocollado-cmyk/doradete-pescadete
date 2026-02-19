@@ -1,7 +1,7 @@
 import streamlit as st
 
 # 1. Configuración de la página
-st.set_page_config(page_title="Calculadora de Rebajas", page_icon="🛍️")
+st.set_page_config(page_title="Calculadora de Rebajas", page_icon="✔")
 
 # Título y Descripción
 st.title("🛒 Calculadora de Rebajas")
@@ -27,9 +27,19 @@ if st.button("Calcular precio final"):
         st.metric(label="Precio final:", value=f"{precio_final:.2f} €")
         
     with col2:
-        st.success(f"Ahorras {cantidad_descuento:.2f} € 💸")
+        st.success(f"muy buen descuento, ahorras {cantidad_descuento:.2f} € 👌")
         if descuento >= 50:
             st.balloons()
+
+     with col3:
+        st.success(f" Nada mal tio,Ahorras {cantidad_descuento:.2f} € 💸")
+        if descuento >= 30:
+            st.balloons()
+
+ with col4:
+        st.success(f"podria estar mejor ahorras {cantidad_descuento:.2f} € 💸")
+        if descuento >= 15:
+            st.💕()
 
     # Extra: Fórmula usada
     st.write("---")
