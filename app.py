@@ -31,15 +31,15 @@ if st.button("Calcular precio final"):
         if descuento >= 50:
             st.balloons()
 
-     with col3:
+     with col2:
         st.success(f" Nada mal tio,Ahorras {cantidad_descuento:.2f} € 💸")
         if descuento >= 30:
             st.balloons()
 
- with col4:
+ with col2:
         st.success(f"podria estar mejor ahorras {cantidad_descuento:.2f} € 💸")
         if descuento >= 15:
-            st.💕()
+            st.balloons()
 
     # Extra: Fórmula usada
     st.write("---")
