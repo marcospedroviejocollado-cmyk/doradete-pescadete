@@ -1,33 +1,60 @@
 import streamlit as st
 
 # 1. Configuración de la página
-st.set_page_config(page_title="Calculadora de Rebajas", page_icon="✔")
+st.set_page_config(page_title="Rebajas 3º ESO", page_icon="🛍️")
 
-# Título y Descripción
-st.title("🛒 Calculadora de Rebajas")
-st.markdown("Introduce el precio original y el descuento para ver el precio final.")
+# Título y descripción
+st.title("💎 Calculadora de Rebajas")
+st.markdown("Introduce el precio original y el descuento para saber el precio final.")
 st.write("---")
 
-# 2. Entrada de Datos (Barra Lateral)
-st.sidebar.header("Datos del Producto")
-precio = st.sidebar.number_input("Precio original (€)", min_value=0.0, max_value=10000.0, value=50.0)
-descuento = st.sidebar.slider("Descuento (%)", 0, 100, 20)
+# 2. Entrada de datos (Barra lateral)
+st.sidebar.header("Datos del producto")
 
-# 3. Botón de Cálculo y Lógica
-if st.button("Calcular precio final"):
-    
-    # Cálculo del descuento
-    cantidad_descuento = precio * (descuento / 100)
-    precio_final = precio - cantidad_descuento
-    
-    # 4. Mostrar Resultado con Diseño
+precio_original = st.sidebar.number_input(
+    "Precio original (€)",
+    min_value=0.0,
+    max_value=1000000.0,
+    value=50.0,
+    step=0.5
+)
+
+descuento = st.sidebar.slider(
+    "Descuento (%)",
+    min_value=0,
+    max_value=99,
+    value=20
+)
+
+# 3. Botón de cálculo y lógica
+if st.button("Calcular ahora"):
+   
+    # Cálculos
+    ahorro = precio_original * descuento / 100
+    precio_final = precio_original - ahorro
+
+    # 4. Mostrar resultados con diseño
     col1, col2 = st.columns(2)
-    
+
     with col1:
-        st.metric(label="Precio final:", value=f"{precio_final:.2f} €")
-        
-  
-    # Extra: Fórmula usada
+        st.metric("Precio final (€)", f"{precio_final:.2f}")
+
+    with col2:
+        st.metric("Ahorras (€)", f"{ahorro:.2f}")
+
+        if descuento == 0:
+            st.info("ℹ️ No hay descuento ")
+        elif descuento < 20:
+            st.warning("🟡 no merece la pena")
+        elif descuento < 50:
+            st.success("✅ ¡increible descuento!")
+            st.balloons()
+        else:
+            st.success("🔥 ¡ni te lo pienses!")
+
+    # Extra: fórmula matemática
     st.write("---")
-    st.info("Fórmula utilizada:")
-    st.latex(r''' Precio\ final = Precio\ original \times (1 - \frac{descuento}{100}) ''')
+    st.info("Fórmula matemática utilizada:")
+    st.latex(r'''
+    Precio\ Final = Precio\ Original - \frac{Precio\ Original \cdot Descuento}{100}
+    ''')
