@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(page_title="Rebajas 3º ESO", page_icon="🛍️")
 
 # Título y descripción
-st.title("💎 Calculadora de Rebajas")
+st.title("💎 Calcula tu rebaja")
 st.markdown("Introduce el precio original y el descuento para saber el precio final.")
 st.write("---")
 
